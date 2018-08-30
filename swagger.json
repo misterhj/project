@@ -1,0 +1,192 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "ABM de Clientes",
+    "description": "ABM de Clientes",
+    "license": {
+      "name": "contactame",
+      "url": "mailto:misterhj@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "Clientes",
+      "description": "metodos"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/cliente/create": {
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "description": "Inserta un nuevo cliente (con id automatica)",
+        "parameters": [
+          {
+            "name": "cliente",
+            "in": "body",
+            "description": "Cliente que queremos crear",
+            "schema": {
+              "$ref": "#/definitions/Cliente1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Nuevo Cliente creado",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        }
+      }
+    },
+	"/api/cliente":{
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Obtiene todos los clientes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        }
+      }	
+	},
+    "/api/cliente/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID del cliente que queremos encontrar",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Obtiene el cliente con el id proporcionado",
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza el cliente con el id proporcionado",
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "cliente",
+            "in": "body",
+            "description": "Cliente con nuevos valores de propiedades",
+            "schema": {
+              "$ref": "#/definitions/Cliente1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente actualizado",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina el cliente con el id proporcionado",
+        "tags": [
+          "Clientes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente eliminado",
+            "schema": {
+              "$ref": "#/definitions/Cliente"
+            }
+          }
+        }
+      }	  
+    }
+  },
+  "definitions": {
+    "Cliente1":{
+		"properties":{
+			"nombre": {
+			  "type": "string"
+			},
+			"apellido": {
+			  "type": "string"
+			},
+			"direccion": {
+			  "type": "string"
+			},
+			"documento": {
+			  "type": "string"
+			},
+			"telefono": {
+			  "type": "string"
+			},
+			"email": {
+			  "type": "string"
+			}		
+		}
+	},
+    "Cliente": {
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "direccion": {
+          "type": "string"
+        },
+        "documento": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
